@@ -1,0 +1,20 @@
+# 
+# License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied.  See the License for the
+# specific language governing permissions and limitations
+# under the License.
+[Unit]
+Description=Airflow scheduler daemon
+After=network.target postgresql.service mysql.service redis.service rabbitmq-server.service
+Wants=postgresql.service mysql.service redis.service rabbitmq-server.service
+[Service]
+EnvironmentFile=/etc/sysconfig/airflow
+User=root
+Group=root
+Type=simple
+ExecStart=/bin/bash -c 'source /root/airflow/venv/bin/activate ; airflow scheduler'
+Restart=always
+RestartSec=5s
+[Install]
+WantedBy=multi-user.target
