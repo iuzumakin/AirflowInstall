@@ -13,7 +13,6 @@ python3 -m venv ./venv
 source ./venv/bin/activate
 pip install -r /root/airflow_install/requirements.txt
 cp /root/airflow_install/airflow.cfg /root/airflow/
-airflow initdb
 
 # 修改.bash_profile
 echo "AIRFLOW_HOME=/root/airflow" >> /root/.bash_profile
@@ -21,6 +20,7 @@ echo "export AIRFLOW_HOME" >> /root/.bash_profile
 # echo "AIRFLOW_HOME="
 # echo "export SITE_AIRFLOW_HOME" >> /root/.bash_profile
 # echo 'PATH=$PATH:$HOME/bin:$SITE_AIRFLOW_HOME/bin' >> /root/.bash_profile
+airflow initdb
 
 # 修改airflow时区
 # 采用直接文件替换,考虑到版本对应
